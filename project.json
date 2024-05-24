@@ -6,7 +6,7 @@
     "Credentials_Managed_by_Orchestrator": "[2.0.2]",
     "DHK.BigQuery.Activities": "[1.2.0]",
     "UiPath.Database.Activities": "[1.7.1]",
-    "UiPath.Excel.Activities": "[2.22.3]",
+    "UiPath.Excel.Activities": "[2.22.4]",
     "UiPath.GSuite.Activities": "[2.4.3]",
     "UiPath.Slack.Activities": "[1.1.0]",
     "UiPath.System.Activities": "[23.10.3]",

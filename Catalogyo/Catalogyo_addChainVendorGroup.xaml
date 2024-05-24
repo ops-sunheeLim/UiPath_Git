@@ -1,0 +1,953 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Catalogyo_addChainVendorGroup" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ubac="clr-namespace:UiPath.BAF.Activities.ContextModel;assembly=UiPath.Slack.Activities" xmlns:ube="clr-namespace:UiPath.BAF.Enums;assembly=UiPath.Slack" xmlns:ubme="clr-namespace:UiPath.BAF.Models.Entity;assembly=UiPath.Slack" xmlns:ubmv="clr-namespace:UiPath.BAF.Models.Views;assembly=UiPath.Slack" xmlns:ubt="clr-namespace:UiPath.BAF.Telemetry;assembly=UiPath.Slack" xmlns:ucm="clr-namespace:UiPath.CodeGen.Model;assembly=UiPath.Slack" xmlns:ucmc="clr-namespace:UiPath.CodeGen.Models.Connection;assembly=UiPath.Slack" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:usa="clr-namespace:UiPath.Slack.Activities;assembly=UiPath.Slack.Activities" xmlns:usam="clr-namespace:UiPath.Slack.Activities.Messages;assembly=UiPath.Slack.Activities" xmlns:use="clr-namespace:UiPath.Slack.Enums;assembly=UiPath.Slack" xmlns:usm="clr-namespace:UiPath.Slack.Models;assembly=UiPath.Slack" xmlns:usm1="clr-namespace:UiPath.Slack.Model;assembly=UiPath.Slack" xmlns:uss="clr-namespace:UiPath.Slack.Services;assembly=UiPath.Slack" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_registerDT" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_copyDT" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_registerBrandList" Type="InArgument(scg:List(x:String))" />
+    <x:Property Name="in_copyBrandList" Type="InArgument(scg:List(x:String))" />
+    <x:Property Name="in_SlackuserToken" Type="InArgument(x:String)" />
+    <x:Property Name="in_SlackbotToken" Type="InArgument(x:String)" />
+    <x:Property Name="in_slackChannel" Type="InArgument(x:String)" />
+  </x:Members>
+  <this:Catalogyo_addChainVendorGroup.in_slackChannel>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Catalogyo_addChainVendorGroup.in_slackChannel>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1008,4679.2</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Catalogyo_addChainVendorGroup_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="98">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.Slack.Enums</x:String>
+      <x:String>UiPath.BAF.Enums</x:String>
+      <x:String>UiPath.Swagger.Models</x:String>
+      <x:String>UiPath.CodeGen.Models.Connection</x:String>
+      <x:String>UiPath.Slack.Models</x:String>
+      <x:String>UiPath.BAF.Models.Connection</x:String>
+      <x:String>UiPath.BAF.Models.Connection.APIConnection</x:String>
+      <x:String>UiPath.BAF.Telemetry</x:String>
+      <x:String>UiPath.BAF.Activities.ContextModel</x:String>
+      <x:String>UiPath.BAF.Models</x:String>
+      <x:String>UiPath.BAF.ServiceInterfaces</x:String>
+      <x:String>UiPath.BAF.Models.Entity</x:String>
+      <x:String>UiPath.BAF.Models.CrudOperation</x:String>
+      <x:String>UiPath.BAF.Models.Response</x:String>
+      <x:String>UiPath.Slack.Activities</x:String>
+      <x:String>UiPath.CodeGen.Activities</x:String>
+      <x:String>UiPath.BAF.Activities</x:String>
+      <x:String>UiPath.Slack.Activities.Messages</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="34">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices.RuntimeInformation</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Data.Entity</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Slack</AssemblyReference>
+      <AssemblyReference>UiPath.Slack.Activities</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Catalogyo_addChainVendorGroup" sap:VirtualizedContainerService.HintSize="678.4,4614.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <If sap2010:Annotation.AnnotationText="가게등록 존재하면 " Condition="[in_registerDT IsNot Nothing]" sap:VirtualizedContainerService.HintSize="636.8,2240.8" sap2010:WorkflowViewState.IdRef="If_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="601.6,2020.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="560,1928" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[in_registerBrandList]">
+            <ui:ForEach.Body>
+              <ActivityAction x:TypeArguments="x:String">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:String" Name="currentItem" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="524.8,1803.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="sd:DataTable" Name="filterDT" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:FilterDataTable sap2010:Annotation.AnnotationText="브랜드별로 데이터테이블 필터" DataTable="[in_registerDT]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="483.2,193.6" sap2010:WorkflowViewState.IdRef="FilterDataTable_3" OutputDataTable="[filterDT]" SelectColumnsMode="Keep">
+                    <ui:FilterDataTable.Filters>
+                      <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+                        <ui:FilterOperationArgument BooleanOperator="And" Operator="EQ">
+                          <ui:FilterOperationArgument.Column>
+                            <InArgument x:TypeArguments="x:String">["brand_nm"]</InArgument>
+                          </ui:FilterOperationArgument.Column>
+                          <ui:FilterOperationArgument.Operand>
+                            <InArgument x:TypeArguments="x:String">[currentItem.ToString]</InArgument>
+                          </ui:FilterOperationArgument.Operand>
+                        </ui:FilterOperationArgument>
+                      </scg:List>
+                    </ui:FilterDataTable.Filters>
+                    <ui:FilterDataTable.SelectColumns>
+                      <scg:List x:TypeArguments="InArgument" Capacity="4">
+                        <x:Null />
+                      </scg:List>
+                    </ui:FilterDataTable.SelectColumns>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:FilterDataTable>
+                  <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="483.2,344.8" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                    <TryCatch.Try>
+                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Catalogyo\Catalogyo_callVendor.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Catalogyo\Catalogyo_callVendor.xaml">
+                        <ui:InvokeWorkflowFile.Arguments>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_brand_nm">[currentItem]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_group_id">[filterDT.Rows(0)("group_id").ToString]</InArgument>
+                        </ui:InvokeWorkflowFile.Arguments>
+                      </ui:InvokeWorkflowFile>
+                    </TryCatch.Try>
+                    <TryCatch.Catches>
+                      <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="403.2,22.4" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ActivityAction x:TypeArguments="s:Exception">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                          </ActivityAction.Argument>
+                          <usa:SlackScopeActivity Connection="{x:Null}" ExistingConnection="{x:Null}" SwaggerClient="{x:Null}" sap2010:Annotation.AnnotationText="벤더 없음 알럿 슬랙 전송" DesignConnectionEnabled="True" DisplayName="Slack Scope" ExistingConnectionType="usm:SlackConnection" sap:VirtualizedContainerService.HintSize="459.2,472" sap2010:WorkflowViewState.IdRef="SlackScopeActivity_3" RefreshCacheEnabled="False" Scopes="PublicChannels, PrivateChannels, DirectMessage, GroupMessage, Files, Users, Chat, UserGroups, Calls, DND, Emoji, Identity, Pins, Reminders, Reactions, Stars" SelectedAuthType="API Token" SelectedDesignAuthType="API Token" TelemetryEnabled="False" ThrowExceptionOnError="False">
+                            <usa:SlackScopeActivity.Body>
+                              <ActivityAction x:TypeArguments="ubac:ScopeActivityContext">
+                                <ActivityAction.Argument>
+                                  <DelegateInArgument x:TypeArguments="ubac:ScopeActivityContext" Name="ScopeActivityContext" />
+                                </ActivityAction.Argument>
+                                <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="425.6,329.6" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <usam:SendMessage BusinessEntityName="{x:Null}" ScopeActivityType="{x:Null}" Status="{x:Null}" ConfiguredBusinessEntity="SendMessage" CrudOperation="Function" DesignConnectionEnabled="True" DisplayName="Send Message" sap:VirtualizedContainerService.HintSize="384,236.8" sap2010:WorkflowViewState.IdRef="SendMessage_3">
+                                    <usam:SendMessage.BusinessEntity>
+                                      <ubme:BusinessEntity AuthFields="{x:Null}" Connection="{x:Null}" Id="{x:Null}" Name="SendMessage">
+                                        <ubme:BusinessEntity.AllFields>
+                                          <scg:List x:TypeArguments="ubme:EntityField" Capacity="0" />
+                                        </ubme:BusinessEntity.AllFields>
+                                        <ubme:BusinessEntity.EntityMetadata>
+                                          <ubme:EntityMetadata Description="{x:Null}" Metadata="{x:Reference __ReferenceID0}" PrimaryFields="{x:Null}" EligibleOperations="-1" IsCustomEntity="False" Name="SendMessage" />
+                                        </ubme:BusinessEntity.EntityMetadata>
+                                        <ubme:BusinessEntity.Metadata>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object" x:Name="__ReferenceID0" />
+                                        </ubme:BusinessEntity.Metadata>
+                                        <ubme:BusinessEntity.SelectedFields>
+                                          <scg:List x:TypeArguments="ubme:EntityField" Capacity="0" />
+                                        </ubme:BusinessEntity.SelectedFields>
+                                        <ubme:BusinessEntity.TelemetryProperties>
+                                          <scg:Dictionary x:TypeArguments="ubt:TelemetryGroup, scg:IDictionary(x:String, x:String)" />
+                                        </ubme:BusinessEntity.TelemetryProperties>
+                                      </ubme:BusinessEntity>
+                                    </usam:SendMessage.BusinessEntity>
+                                    <usam:SendMessage.PopulatedAPIParameters>
+                                      <scg:Dictionary x:TypeArguments="x:String, ubme:EntityField" />
+                                    </usam:SendMessage.PopulatedAPIParameters>
+                                    <usam:SendMessage.SelectedFields>
+                                      <scg:List x:TypeArguments="ubme:EntityField" Capacity="8">
+                                        <ucm:CodeGenEntityField x:TypeArguments="use:ConversationType" ArgumentValue="{x:Null}" ContainingType="{x:Null}" FieldFullName="{x:Null}" InArgumentValue="{x:Null}" InOutArgumentValue="{x:Null}" Metadata="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" ArgumentDirection="In" ArgumentType="use:ConversationType" DataType="ConversationType" Description="메시지를 가져올 대화 유형" DisplayName="Conversation Type" FieldName="Conversation Type" FormDataType="ComboBox" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="True">
+                                          <ucm:CodeGenEntityField.DefaultValue>
+                                            <use:ConversationType>Channel</use:ConversationType>
+                                          </ucm:CodeGenEntityField.DefaultValue>
+                                          <ucm:CodeGenEntityField.Value>
+                                            <use:ConversationType>Channel</use:ConversationType>
+                                          </ucm:CodeGenEntityField.Value>
+                                        </ucm:CodeGenEntityField>
+                                        <ucm:CodeGenEntityField x:TypeArguments="x:String" ArgumentValue="{x:Null}" ContainingType="{x:Null}" DefaultValue="{x:Null}" FieldFullName="{x:Null}" InArgumentValue="{x:Null}" InOutArgumentValue="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" Value="{x:Null}" ArgumentDirection="In" ArgumentType="x:String" DataType="String" Description="채널의 이름" DisplayName="Channel Name" FieldName="Channel Name" FormDataType="TextBoxWithButton" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="False">
+                                          <ucm:CodeGenEntityField.Metadata>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <ube:WindowType x:Key="WindowType">FindObject</ube:WindowType>
+                                              <ubmv:FindObjectInput ParentQuery="{x:Null}" ParentQueryLabel="{x:Null}" Query="{x:Null}" x:Key="WindowTypeInput" IsMultiSelectAllowed="False" ObjectType="Channel" ReturnColumn="Name" ShouldLoadOnStart="False" WindowName="Channel">
+                                                <ubmv:FindObjectInput.ColumnsToShow>
+                                                  <scg:List x:TypeArguments="x:String" Capacity="4">
+                                                    <x:String>Id</x:String>
+                                                    <x:String>Name</x:String>
+                                                  </scg:List>
+                                                </ubmv:FindObjectInput.ColumnsToShow>
+                                                <ubmv:FindObjectInput.Metadata>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <x:String x:Key="ChannelTypesKey">public_channel,private_channel</x:String>
+                                                  </scg:Dictionary>
+                                                </ubmv:FindObjectInput.Metadata>
+                                                <ubmv:FindObjectInput.QueryFilterColumns>
+                                                  <scg:List x:TypeArguments="x:String" Capacity="4">
+                                                    <x:String>Id</x:String>
+                                                    <x:String>Name</x:String>
+                                                  </scg:List>
+                                                </ubmv:FindObjectInput.QueryFilterColumns>
+                                              </ubmv:FindObjectInput>
+                                            </scg:Dictionary>
+                                          </ucm:CodeGenEntityField.Metadata>
+                                        </ucm:CodeGenEntityField>
+                                        <ucm:CodeGenEntityField x:TypeArguments="x:String" ContainingType="{x:Null}" DefaultValue="{x:Null}" FieldFullName="{x:Null}" InOutArgumentValue="{x:Null}" Metadata="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" Value="{x:Null}" ArgumentDirection="In" ArgumentType="x:String" DataType="String" Description="채널의 ID" DisplayName="Channel ID" FieldName="Channel ID" FormDataType="ExpressionTextBox" InArgumentValue="[in_slackChannel]" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="False">
+                                          <ucm:CodeGenEntityField.ArgumentValue>
+                                            <InArgument x:TypeArguments="x:String">[in_slackChannel]</InArgument>
+                                          </ucm:CodeGenEntityField.ArgumentValue>
+                                        </ucm:CodeGenEntityField>
+                                        <ucm:CodeGenEntityField x:TypeArguments="x:String" ContainingType="{x:Null}" DefaultValue="{x:Null}" FieldFullName="{x:Null}" InOutArgumentValue="{x:Null}" Metadata="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" Value="{x:Null}" ArgumentDirection="In" ArgumentType="x:String" DataType="String" Description="전송할 메시지" DisplayName="Text" FieldName="Text" FormDataType="ExpressionTextBox" InArgumentValue="[&quot;&gt; &quot; + currentItem.ToString + &quot; catalogyo 벤더 불러오기 리스트 없음&quot;]" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="False">
+                                          <ucm:CodeGenEntityField.ArgumentValue>
+                                            <InArgument x:TypeArguments="x:String">["&gt; " + currentItem.ToString + " catalogyo 벤더 불러오기 리스트 없음"]</InArgument>
+                                          </ucm:CodeGenEntityField.ArgumentValue>
+                                        </ucm:CodeGenEntityField>
+                                        <ucm:CodeGenEntityField x:TypeArguments="x:String" ArgumentValue="{x:Null}" ContainingType="{x:Null}" DefaultValue="{x:Null}" FieldFullName="{x:Null}" InArgumentValue="{x:Null}" InOutArgumentValue="{x:Null}" Metadata="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" Value="{x:Null}" ArgumentDirection="In" ArgumentType="x:String" DataType="String" Description="메시지에 첨부할 파일" DisplayName="File" FieldName="File" FormDataType="FilePicker" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="False" />
+                                        <ucm:CodeGenEntityField x:TypeArguments="x:Boolean" ArgumentValue="{x:Null}" ContainingType="{x:Null}" DefaultValue="{x:Null}" FieldFullName="{x:Null}" InArgumentValue="{x:Null}" InOutArgumentValue="{x:Null}" Metadata="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" Value="{x:Null}" ArgumentDirection="In" ArgumentType="x:Boolean" DataType="Boolean" Description="이 메시지를 사용자 또는 봇으로 전송합니다. 기본값은 true(사용자로 전송)입니다." DisplayName="As User" FieldName="As User" FormDataType="ExpressionTextBox" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="False" />
+                                        <ucm:CodeGenEntityField x:TypeArguments="usm1:Message" ArgumentValue="{x:Null}" ContainingType="{x:Null}" DefaultValue="{x:Null}" FieldFullName="{x:Null}" InArgumentValue="{x:Null}" InOutArgumentValue="{x:Null}" Metadata="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" Value="{x:Null}" ArgumentDirection="Out" ArgumentType="usm1:Message" DataType="Message" Description="전송된 메시지" DisplayName="Message" FieldName="Message" FormDataType="ExpressionTextBox" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="False" />
+                                      </scg:List>
+                                    </usam:SendMessage.SelectedFields>
+                                    <usam:SendMessage.ServiceFactory>
+                                      <uss:SlackServiceFactory />
+                                    </usam:SendMessage.ServiceFactory>
+                                    <usam:SendMessage.TelemetryProperties>
+                                      <scg:Dictionary x:TypeArguments="ubt:TelemetryGroup, scg:IDictionary(x:String, x:String)" />
+                                    </usam:SendMessage.TelemetryProperties>
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                  </usam:SendMessage>
+                                </Sequence>
+                              </ActivityAction>
+                            </usa:SlackScopeActivity.Body>
+                            <usa:SlackScopeActivity.ConnectionParameters>
+                              <scg:List x:TypeArguments="ucmc:ConnectionParam" Capacity="4">
+                                <ucmc:ConnectionParam Value="{x:Null}" ArgumentDirection="In" ArgumentType="x:String" Description="OAuth 액세스 토큰" Mandatory="True" Name="API Token">
+                                  <ucmc:ConnectionParam.ArgumentValue>
+                                    <InArgument x:TypeArguments="x:String">[in_SlackbotToken]</InArgument>
+                                  </ucmc:ConnectionParam.ArgumentValue>
+                                </ucmc:ConnectionParam>
+                              </scg:List>
+                            </usa:SlackScopeActivity.ConnectionParameters>
+                            <usa:SlackScopeActivity.DesignConnectionParameters>
+                              <scg:List x:TypeArguments="ucmc:ConnectionParam" Capacity="4">
+                                <ucmc:ConnectionParam ArgumentValue="{x:Null}" ArgumentDirection="In" ArgumentType="x:String" Description="OAuth 액세스 토큰" Mandatory="True" Name="API Token" Value="in_SlackuserToken" />
+                              </scg:List>
+                            </usa:SlackScopeActivity.DesignConnectionParameters>
+                            <usa:SlackScopeActivity.DesignConnectionRequest>
+                              <usm:SlackConnectionParameters APIKey="{x:Null}" BaseUrl="{x:Null}" BearerToken="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" ConfigFileClient="{x:Null}" ConfigFilePath="{x:Null}" ExistingConnection="{x:Null}" JWTToken="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" PersonalAccessTokenName="{x:Null}" PersonalAccessTokenSecret="{x:Null}" SwaggerClient="{x:Null}" Username="{x:Null}" APIToken="in_SlackuserToken" AuthType="ApiToken">
+                                <usm:SlackConnectionParameters.Scopes>
+                                  <use:SlackScopes>PublicChannels, PrivateChannels, DirectMessage, GroupMessage, Files, Users, Chat, UserGroups, Calls, DND, Emoji, Identity, Pins, Reminders, Reactions, Stars</use:SlackScopes>
+                                </usm:SlackConnectionParameters.Scopes>
+                              </usm:SlackConnectionParameters>
+                            </usa:SlackScopeActivity.DesignConnectionRequest>
+                            <usa:SlackScopeActivity.ServiceFactory>
+                              <uss:SlackServiceFactory />
+                            </usa:SlackScopeActivity.ServiceFactory>
+                            <usa:SlackScopeActivity.SupportedAuthTypes>
+                              <scg:List x:TypeArguments="x:String" Capacity="4">
+                                <x:String>Existing Connection</x:String>
+                                <x:String>OAuth Authorization Code</x:String>
+                                <x:String>API Token</x:String>
+                              </scg:List>
+                            </usa:SlackScopeActivity.SupportedAuthTypes>
+                            <usa:SlackScopeActivity.TelemetryProperties>
+                              <scg:Dictionary x:TypeArguments="ubt:TelemetryGroup, scg:IDictionary(x:String, x:String)" />
+                            </usa:SlackScopeActivity.TelemetryProperties>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </usa:SlackScopeActivity>
+                        </ActivityAction>
+                      </Catch>
+                    </TryCatch.Catches>
+                  </TryCatch>
+                  <If sap2010:Annotation.AnnotationText="요편의점은 relayo dashboard 동기화 작업 필요 없음" Condition="[currentItem &lt;&gt; &quot;요편의점&quot;]" sap:VirtualizedContainerService.HintSize="483.2,426.4" sap2010:WorkflowViewState.IdRef="If_3">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <Sequence sap:VirtualizedContainerService.HintSize="375.2,206.4" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Catalogyo\Catalogyo_makeSameVendor.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Catalogyo\Catalogyo_makeSameVendor.xaml">
+                          <ui:InvokeWorkflowFile.Arguments>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_brand_nm">[currentItem]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_relayo_id">[filterDT.Rows(0)("relayo_id").ToString]</InArgument>
+                          </ui:InvokeWorkflowFile.Arguments>
+                        </ui:InvokeWorkflowFile>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_15">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                  <usa:SlackScopeActivity Connection="{x:Null}" ExistingConnection="{x:Null}" SwaggerClient="{x:Null}" sap2010:Annotation.AnnotationText="catalogyo 추가 완료 슬랙" DesignConnectionEnabled="True" DisplayName="Slack Scope" ExistingConnectionType="usm:SlackConnection" sap:VirtualizedContainerService.HintSize="483.2,472" sap2010:WorkflowViewState.IdRef="SlackScopeActivity_1" RefreshCacheEnabled="False" Scopes="PublicChannels, PrivateChannels, DirectMessage, GroupMessage, Files, Users, Chat, UserGroups, Calls, DND, Emoji, Identity, Pins, Reminders, Reactions, Stars" SelectedAuthType="API Token" SelectedDesignAuthType="API Token" TelemetryEnabled="False" ThrowExceptionOnError="False">
+                    <usa:SlackScopeActivity.Body>
+                      <ActivityAction x:TypeArguments="ubac:ScopeActivityContext">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="ubac:ScopeActivityContext" Name="ScopeActivityContext" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="425.6,329.6" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <usam:SendMessage BusinessEntityName="{x:Null}" ScopeActivityType="{x:Null}" Status="{x:Null}" ConfiguredBusinessEntity="SendMessage" CrudOperation="Function" DesignConnectionEnabled="True" DisplayName="Send Message" sap:VirtualizedContainerService.HintSize="384,236.8" sap2010:WorkflowViewState.IdRef="SendMessage_1">
+                            <usam:SendMessage.BusinessEntity>
+                              <ubme:BusinessEntity AuthFields="{x:Null}" Connection="{x:Null}" Id="{x:Null}" Name="SendMessage">
+                                <ubme:BusinessEntity.AllFields>
+                                  <scg:List x:TypeArguments="ubme:EntityField" Capacity="0" />
+                                </ubme:BusinessEntity.AllFields>
+                                <ubme:BusinessEntity.EntityMetadata>
+                                  <ubme:EntityMetadata Description="{x:Null}" Metadata="{x:Reference __ReferenceID1}" PrimaryFields="{x:Null}" EligibleOperations="-1" IsCustomEntity="False" Name="SendMessage" />
+                                </ubme:BusinessEntity.EntityMetadata>
+                                <ubme:BusinessEntity.Metadata>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object" x:Name="__ReferenceID1" />
+                                </ubme:BusinessEntity.Metadata>
+                                <ubme:BusinessEntity.SelectedFields>
+                                  <scg:List x:TypeArguments="ubme:EntityField" Capacity="0" />
+                                </ubme:BusinessEntity.SelectedFields>
+                                <ubme:BusinessEntity.TelemetryProperties>
+                                  <scg:Dictionary x:TypeArguments="ubt:TelemetryGroup, scg:IDictionary(x:String, x:String)" />
+                                </ubme:BusinessEntity.TelemetryProperties>
+                              </ubme:BusinessEntity>
+                            </usam:SendMessage.BusinessEntity>
+                            <usam:SendMessage.PopulatedAPIParameters>
+                              <scg:Dictionary x:TypeArguments="x:String, ubme:EntityField" />
+                            </usam:SendMessage.PopulatedAPIParameters>
+                            <usam:SendMessage.SelectedFields>
+                              <scg:List x:TypeArguments="ubme:EntityField" Capacity="8">
+                                <ucm:CodeGenEntityField x:TypeArguments="use:ConversationType" ArgumentValue="{x:Null}" ContainingType="{x:Null}" FieldFullName="{x:Null}" InArgumentValue="{x:Null}" InOutArgumentValue="{x:Null}" Metadata="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" ArgumentDirection="In" ArgumentType="use:ConversationType" DataType="ConversationType" Description="메시지를 가져올 대화 유형" DisplayName="Conversation Type" FieldName="Conversation Type" FormDataType="ComboBox" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="True">
+                                  <ucm:CodeGenEntityField.DefaultValue>
+                                    <use:ConversationType>Channel</use:ConversationType>
+                                  </ucm:CodeGenEntityField.DefaultValue>
+                                  <ucm:CodeGenEntityField.Value>
+                                    <use:ConversationType>Channel</use:ConversationType>
+                                  </ucm:CodeGenEntityField.Value>
+                                </ucm:CodeGenEntityField>
+                                <ucm:CodeGenEntityField x:TypeArguments="x:String" ArgumentValue="{x:Null}" ContainingType="{x:Null}" DefaultValue="{x:Null}" FieldFullName="{x:Null}" InArgumentValue="{x:Null}" InOutArgumentValue="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" Value="{x:Null}" ArgumentDirection="In" ArgumentType="x:String" DataType="String" Description="채널의 이름" DisplayName="Channel Name" FieldName="Channel Name" FormDataType="TextBoxWithButton" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="False">
+                                  <ucm:CodeGenEntityField.Metadata>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <ube:WindowType x:Key="WindowType">FindObject</ube:WindowType>
+                                      <ubmv:FindObjectInput ParentQuery="{x:Null}" ParentQueryLabel="{x:Null}" Query="{x:Null}" x:Key="WindowTypeInput" IsMultiSelectAllowed="False" ObjectType="Channel" ReturnColumn="Name" ShouldLoadOnStart="False" WindowName="Channel">
+                                        <ubmv:FindObjectInput.ColumnsToShow>
+                                          <scg:List x:TypeArguments="x:String" Capacity="4">
+                                            <x:String>Id</x:String>
+                                            <x:String>Name</x:String>
+                                          </scg:List>
+                                        </ubmv:FindObjectInput.ColumnsToShow>
+                                        <ubmv:FindObjectInput.Metadata>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:String x:Key="ChannelTypesKey">public_channel,private_channel</x:String>
+                                          </scg:Dictionary>
+                                        </ubmv:FindObjectInput.Metadata>
+                                        <ubmv:FindObjectInput.QueryFilterColumns>
+                                          <scg:List x:TypeArguments="x:String" Capacity="4">
+                                            <x:String>Id</x:String>
+                                            <x:String>Name</x:String>
+                                          </scg:List>
+                                        </ubmv:FindObjectInput.QueryFilterColumns>
+                                      </ubmv:FindObjectInput>
+                                    </scg:Dictionary>
+                                  </ucm:CodeGenEntityField.Metadata>
+                                </ucm:CodeGenEntityField>
+                                <ucm:CodeGenEntityField x:TypeArguments="x:String" ContainingType="{x:Null}" DefaultValue="{x:Null}" FieldFullName="{x:Null}" InOutArgumentValue="{x:Null}" Metadata="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" Value="{x:Null}" ArgumentDirection="In" ArgumentType="x:String" DataType="String" Description="채널의 ID" DisplayName="Channel ID" FieldName="Channel ID" FormDataType="ExpressionTextBox" InArgumentValue="[in_slackChannel]" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="False">
+                                  <ucm:CodeGenEntityField.ArgumentValue>
+                                    <InArgument x:TypeArguments="x:String">[in_slackChannel]</InArgument>
+                                  </ucm:CodeGenEntityField.ArgumentValue>
+                                </ucm:CodeGenEntityField>
+                                <ucm:CodeGenEntityField x:TypeArguments="x:String" ContainingType="{x:Null}" DefaultValue="{x:Null}" FieldFullName="{x:Null}" InOutArgumentValue="{x:Null}" Metadata="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" Value="{x:Null}" ArgumentDirection="In" ArgumentType="x:String" DataType="String" Description="전송할 메시지" DisplayName="Text" FieldName="Text" FormDataType="ExpressionTextBox" InArgumentValue="[&quot;&gt; &quot; + currentItem.ToString + &quot; catalogyo 체인벤더 추가 / 동기화 완료&quot;]" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="False">
+                                  <ucm:CodeGenEntityField.ArgumentValue>
+                                    <InArgument x:TypeArguments="x:String">["&gt; " + currentItem.ToString + " catalogyo 체인벤더 추가 / 동기화 완료"]</InArgument>
+                                  </ucm:CodeGenEntityField.ArgumentValue>
+                                </ucm:CodeGenEntityField>
+                                <ucm:CodeGenEntityField x:TypeArguments="x:String" ArgumentValue="{x:Null}" ContainingType="{x:Null}" DefaultValue="{x:Null}" FieldFullName="{x:Null}" InArgumentValue="{x:Null}" InOutArgumentValue="{x:Null}" Metadata="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" Value="{x:Null}" ArgumentDirection="In" ArgumentType="x:String" DataType="String" Description="메시지에 첨부할 파일" DisplayName="File" FieldName="File" FormDataType="FilePicker" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="False" />
+                                <ucm:CodeGenEntityField x:TypeArguments="x:Boolean" ArgumentValue="{x:Null}" ContainingType="{x:Null}" DefaultValue="{x:Null}" FieldFullName="{x:Null}" InArgumentValue="{x:Null}" InOutArgumentValue="{x:Null}" Metadata="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" Value="{x:Null}" ArgumentDirection="In" ArgumentType="x:Boolean" DataType="Boolean" Description="이 메시지를 사용자 또는 봇으로 전송합니다. 기본값은 true(사용자로 전송)입니다." DisplayName="As User" FieldName="As User" FormDataType="ExpressionTextBox" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="False" />
+                                <ucm:CodeGenEntityField x:TypeArguments="usm1:Message" ArgumentValue="{x:Null}" ContainingType="{x:Null}" DefaultValue="{x:Null}" FieldFullName="{x:Null}" InArgumentValue="{x:Null}" InOutArgumentValue="{x:Null}" Metadata="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" Value="{x:Null}" ArgumentDirection="Out" ArgumentType="usm1:Message" DataType="Message" Description="전송된 메시지" DisplayName="Message" FieldName="Message" FormDataType="ExpressionTextBox" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="False" />
+                              </scg:List>
+                            </usam:SendMessage.SelectedFields>
+                            <usam:SendMessage.ServiceFactory>
+                              <uss:SlackServiceFactory />
+                            </usam:SendMessage.ServiceFactory>
+                            <usam:SendMessage.TelemetryProperties>
+                              <scg:Dictionary x:TypeArguments="ubt:TelemetryGroup, scg:IDictionary(x:String, x:String)" />
+                            </usam:SendMessage.TelemetryProperties>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </usam:SendMessage>
+                        </Sequence>
+                      </ActivityAction>
+                    </usa:SlackScopeActivity.Body>
+                    <usa:SlackScopeActivity.ConnectionParameters>
+                      <scg:List x:TypeArguments="ucmc:ConnectionParam" Capacity="4">
+                        <ucmc:ConnectionParam Value="{x:Null}" ArgumentDirection="In" ArgumentType="x:String" Description="OAuth 액세스 토큰" Mandatory="True" Name="API Token">
+                          <ucmc:ConnectionParam.ArgumentValue>
+                            <InArgument x:TypeArguments="x:String">[in_SlackbotToken]</InArgument>
+                          </ucmc:ConnectionParam.ArgumentValue>
+                        </ucmc:ConnectionParam>
+                      </scg:List>
+                    </usa:SlackScopeActivity.ConnectionParameters>
+                    <usa:SlackScopeActivity.DesignConnectionParameters>
+                      <scg:List x:TypeArguments="ucmc:ConnectionParam" Capacity="4">
+                        <ucmc:ConnectionParam ArgumentValue="{x:Null}" ArgumentDirection="In" ArgumentType="x:String" Description="OAuth 액세스 토큰" Mandatory="True" Name="API Token" Value="in_SlackuserToken" />
+                      </scg:List>
+                    </usa:SlackScopeActivity.DesignConnectionParameters>
+                    <usa:SlackScopeActivity.DesignConnectionRequest>
+                      <usm:SlackConnectionParameters APIKey="{x:Null}" BaseUrl="{x:Null}" BearerToken="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" ConfigFileClient="{x:Null}" ConfigFilePath="{x:Null}" ExistingConnection="{x:Null}" JWTToken="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" PersonalAccessTokenName="{x:Null}" PersonalAccessTokenSecret="{x:Null}" SwaggerClient="{x:Null}" Username="{x:Null}" APIToken="in_SlackuserToken" AuthType="ApiToken">
+                        <usm:SlackConnectionParameters.Scopes>
+                          <use:SlackScopes>PublicChannels, PrivateChannels, DirectMessage, GroupMessage, Files, Users, Chat, UserGroups, Calls, DND, Emoji, Identity, Pins, Reminders, Reactions, Stars</use:SlackScopes>
+                        </usm:SlackConnectionParameters.Scopes>
+                      </usm:SlackConnectionParameters>
+                    </usa:SlackScopeActivity.DesignConnectionRequest>
+                    <usa:SlackScopeActivity.ServiceFactory>
+                      <uss:SlackServiceFactory />
+                    </usa:SlackScopeActivity.ServiceFactory>
+                    <usa:SlackScopeActivity.SupportedAuthTypes>
+                      <scg:List x:TypeArguments="x:String" Capacity="4">
+                        <x:String>Existing Connection</x:String>
+                        <x:String>OAuth Authorization Code</x:String>
+                        <x:String>API Token</x:String>
+                      </scg:List>
+                    </usa:SlackScopeActivity.SupportedAuthTypes>
+                    <usa:SlackScopeActivity.TelemetryProperties>
+                      <scg:Dictionary x:TypeArguments="ubt:TelemetryGroup, scg:IDictionary(x:String, x:String)" />
+                    </usa:SlackScopeActivity.TelemetryProperties>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </usa:SlackScopeActivity>
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Bigquery\Bigquery_writeResultDT.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="483.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Bigquery\Bigquery_writeResultDT.xaml">
+                    <ui:InvokeWorkflowFile.Arguments>
+                      <InArgument x:TypeArguments="sd:DataTable" x:Key="in_resultDT">[filterDT]</InArgument>
+                    </ui:InvokeWorkflowFile.Arguments>
+                  </ui:InvokeWorkflowFile>
+                </Sequence>
+              </ActivityAction>
+            </ui:ForEach.Body>
+          </ui:ForEach>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence sap:VirtualizedContainerService.HintSize="200,84.8" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </If.Else>
+    </If>
+    <If sap2010:Annotation.AnnotationText="가게복사 존재하면 " Condition="[in_copyDT IsNot Nothing]" sap:VirtualizedContainerService.HintSize="636.8,2240.8" sap2010:WorkflowViewState.IdRef="If_2">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="601.6,2020.8" sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="560,1928" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[in_copyBrandList]">
+            <ui:ForEach.Body>
+              <ActivityAction x:TypeArguments="x:String">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:String" Name="currentItem" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="524.8,1803.2" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="sd:DataTable" Name="filterDT" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:FilterDataTable sap2010:Annotation.AnnotationText="브랜드별로 데이터테이블 필터" DataTable="[in_copyDT]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="483.2,193.6" sap2010:WorkflowViewState.IdRef="FilterDataTable_2" OutputDataTable="[filterDT]" SelectColumnsMode="Remove">
+                    <ui:FilterDataTable.Filters>
+                      <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+                        <ui:FilterOperationArgument BooleanOperator="And" Operator="EQ">
+                          <ui:FilterOperationArgument.Column>
+                            <InArgument x:TypeArguments="x:String">["brand_nm"]</InArgument>
+                          </ui:FilterOperationArgument.Column>
+                          <ui:FilterOperationArgument.Operand>
+                            <InArgument x:TypeArguments="x:String">[currentItem.ToString]</InArgument>
+                          </ui:FilterOperationArgument.Operand>
+                        </ui:FilterOperationArgument>
+                      </scg:List>
+                    </ui:FilterDataTable.Filters>
+                    <ui:FilterDataTable.SelectColumns>
+                      <scg:List x:TypeArguments="InArgument" Capacity="4">
+                        <x:Null />
+                      </scg:List>
+                    </ui:FilterDataTable.SelectColumns>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:FilterDataTable>
+                  <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="483.2,344.8" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                    <TryCatch.Try>
+                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Catalogyo\Catalogyo_callVendor.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Catalogyo\Catalogyo_callVendor.xaml">
+                        <ui:InvokeWorkflowFile.Arguments>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_brand_nm">[currentItem]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_group_id">[filterDT.Rows(0)("group_id").ToString]</InArgument>
+                        </ui:InvokeWorkflowFile.Arguments>
+                      </ui:InvokeWorkflowFile>
+                    </TryCatch.Try>
+                    <TryCatch.Catches>
+                      <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="403.2,22.4" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ActivityAction x:TypeArguments="s:Exception">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                          </ActivityAction.Argument>
+                          <usa:SlackScopeActivity Connection="{x:Null}" ExistingConnection="{x:Null}" SwaggerClient="{x:Null}" sap2010:Annotation.AnnotationText="벤더 없음 알럿 슬랙 전송" DesignConnectionEnabled="True" DisplayName="Slack Scope" ExistingConnectionType="usm:SlackConnection" sap:VirtualizedContainerService.HintSize="459.2,472" sap2010:WorkflowViewState.IdRef="SlackScopeActivity_4" RefreshCacheEnabled="False" Scopes="PublicChannels, PrivateChannels, DirectMessage, GroupMessage, Files, Users, Chat, UserGroups, Calls, DND, Emoji, Identity, Pins, Reminders, Reactions, Stars" SelectedAuthType="API Token" SelectedDesignAuthType="API Token" TelemetryEnabled="False" ThrowExceptionOnError="False">
+                            <usa:SlackScopeActivity.Body>
+                              <ActivityAction x:TypeArguments="ubac:ScopeActivityContext">
+                                <ActivityAction.Argument>
+                                  <DelegateInArgument x:TypeArguments="ubac:ScopeActivityContext" Name="ScopeActivityContext" />
+                                </ActivityAction.Argument>
+                                <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="425.6,329.6" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <usam:SendMessage BusinessEntityName="{x:Null}" ScopeActivityType="{x:Null}" Status="{x:Null}" ConfiguredBusinessEntity="SendMessage" CrudOperation="Function" DesignConnectionEnabled="True" DisplayName="Send Message" sap:VirtualizedContainerService.HintSize="384,236.8" sap2010:WorkflowViewState.IdRef="SendMessage_4">
+                                    <usam:SendMessage.BusinessEntity>
+                                      <ubme:BusinessEntity AuthFields="{x:Null}" Connection="{x:Null}" Id="{x:Null}" Name="SendMessage">
+                                        <ubme:BusinessEntity.AllFields>
+                                          <scg:List x:TypeArguments="ubme:EntityField" Capacity="0" />
+                                        </ubme:BusinessEntity.AllFields>
+                                        <ubme:BusinessEntity.EntityMetadata>
+                                          <ubme:EntityMetadata Description="{x:Null}" Metadata="{x:Reference __ReferenceID2}" PrimaryFields="{x:Null}" EligibleOperations="-1" IsCustomEntity="False" Name="SendMessage" />
+                                        </ubme:BusinessEntity.EntityMetadata>
+                                        <ubme:BusinessEntity.Metadata>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object" x:Name="__ReferenceID2" />
+                                        </ubme:BusinessEntity.Metadata>
+                                        <ubme:BusinessEntity.SelectedFields>
+                                          <scg:List x:TypeArguments="ubme:EntityField" Capacity="0" />
+                                        </ubme:BusinessEntity.SelectedFields>
+                                        <ubme:BusinessEntity.TelemetryProperties>
+                                          <scg:Dictionary x:TypeArguments="ubt:TelemetryGroup, scg:IDictionary(x:String, x:String)" />
+                                        </ubme:BusinessEntity.TelemetryProperties>
+                                      </ubme:BusinessEntity>
+                                    </usam:SendMessage.BusinessEntity>
+                                    <usam:SendMessage.PopulatedAPIParameters>
+                                      <scg:Dictionary x:TypeArguments="x:String, ubme:EntityField" />
+                                    </usam:SendMessage.PopulatedAPIParameters>
+                                    <usam:SendMessage.SelectedFields>
+                                      <scg:List x:TypeArguments="ubme:EntityField" Capacity="8">
+                                        <ucm:CodeGenEntityField x:TypeArguments="use:ConversationType" ArgumentValue="{x:Null}" ContainingType="{x:Null}" FieldFullName="{x:Null}" InArgumentValue="{x:Null}" InOutArgumentValue="{x:Null}" Metadata="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" ArgumentDirection="In" ArgumentType="use:ConversationType" DataType="ConversationType" Description="메시지를 가져올 대화 유형" DisplayName="Conversation Type" FieldName="Conversation Type" FormDataType="ComboBox" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="True">
+                                          <ucm:CodeGenEntityField.DefaultValue>
+                                            <use:ConversationType>Channel</use:ConversationType>
+                                          </ucm:CodeGenEntityField.DefaultValue>
+                                          <ucm:CodeGenEntityField.Value>
+                                            <use:ConversationType>Channel</use:ConversationType>
+                                          </ucm:CodeGenEntityField.Value>
+                                        </ucm:CodeGenEntityField>
+                                        <ucm:CodeGenEntityField x:TypeArguments="x:String" ArgumentValue="{x:Null}" ContainingType="{x:Null}" DefaultValue="{x:Null}" FieldFullName="{x:Null}" InArgumentValue="{x:Null}" InOutArgumentValue="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" Value="{x:Null}" ArgumentDirection="In" ArgumentType="x:String" DataType="String" Description="채널의 이름" DisplayName="Channel Name" FieldName="Channel Name" FormDataType="TextBoxWithButton" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="False">
+                                          <ucm:CodeGenEntityField.Metadata>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <ube:WindowType x:Key="WindowType">FindObject</ube:WindowType>
+                                              <ubmv:FindObjectInput ParentQuery="{x:Null}" ParentQueryLabel="{x:Null}" Query="{x:Null}" x:Key="WindowTypeInput" IsMultiSelectAllowed="False" ObjectType="Channel" ReturnColumn="Name" ShouldLoadOnStart="False" WindowName="Channel">
+                                                <ubmv:FindObjectInput.ColumnsToShow>
+                                                  <scg:List x:TypeArguments="x:String" Capacity="4">
+                                                    <x:String>Id</x:String>
+                                                    <x:String>Name</x:String>
+                                                  </scg:List>
+                                                </ubmv:FindObjectInput.ColumnsToShow>
+                                                <ubmv:FindObjectInput.Metadata>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <x:String x:Key="ChannelTypesKey">public_channel,private_channel</x:String>
+                                                  </scg:Dictionary>
+                                                </ubmv:FindObjectInput.Metadata>
+                                                <ubmv:FindObjectInput.QueryFilterColumns>
+                                                  <scg:List x:TypeArguments="x:String" Capacity="4">
+                                                    <x:String>Id</x:String>
+                                                    <x:String>Name</x:String>
+                                                  </scg:List>
+                                                </ubmv:FindObjectInput.QueryFilterColumns>
+                                              </ubmv:FindObjectInput>
+                                            </scg:Dictionary>
+                                          </ucm:CodeGenEntityField.Metadata>
+                                        </ucm:CodeGenEntityField>
+                                        <ucm:CodeGenEntityField x:TypeArguments="x:String" ContainingType="{x:Null}" DefaultValue="{x:Null}" FieldFullName="{x:Null}" InOutArgumentValue="{x:Null}" Metadata="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" Value="{x:Null}" ArgumentDirection="In" ArgumentType="x:String" DataType="String" Description="채널의 ID" DisplayName="Channel ID" FieldName="Channel ID" FormDataType="ExpressionTextBox" InArgumentValue="[in_slackChannel]" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="False">
+                                          <ucm:CodeGenEntityField.ArgumentValue>
+                                            <InArgument x:TypeArguments="x:String">[in_slackChannel]</InArgument>
+                                          </ucm:CodeGenEntityField.ArgumentValue>
+                                        </ucm:CodeGenEntityField>
+                                        <ucm:CodeGenEntityField x:TypeArguments="x:String" ContainingType="{x:Null}" DefaultValue="{x:Null}" FieldFullName="{x:Null}" InOutArgumentValue="{x:Null}" Metadata="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" Value="{x:Null}" ArgumentDirection="In" ArgumentType="x:String" DataType="String" Description="전송할 메시지" DisplayName="Text" FieldName="Text" FormDataType="ExpressionTextBox" InArgumentValue="[&quot;&gt; &quot; + currentItem.ToString + &quot; catalogyo 벤더 불러오기 리스트 없음&quot;]" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="False">
+                                          <ucm:CodeGenEntityField.ArgumentValue>
+                                            <InArgument x:TypeArguments="x:String">["&gt; " + currentItem.ToString + " catalogyo 벤더 불러오기 리스트 없음"]</InArgument>
+                                          </ucm:CodeGenEntityField.ArgumentValue>
+                                        </ucm:CodeGenEntityField>
+                                        <ucm:CodeGenEntityField x:TypeArguments="x:String" ArgumentValue="{x:Null}" ContainingType="{x:Null}" DefaultValue="{x:Null}" FieldFullName="{x:Null}" InArgumentValue="{x:Null}" InOutArgumentValue="{x:Null}" Metadata="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" Value="{x:Null}" ArgumentDirection="In" ArgumentType="x:String" DataType="String" Description="메시지에 첨부할 파일" DisplayName="File" FieldName="File" FormDataType="FilePicker" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="False" />
+                                        <ucm:CodeGenEntityField x:TypeArguments="x:Boolean" ArgumentValue="{x:Null}" ContainingType="{x:Null}" DefaultValue="{x:Null}" FieldFullName="{x:Null}" InArgumentValue="{x:Null}" InOutArgumentValue="{x:Null}" Metadata="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" Value="{x:Null}" ArgumentDirection="In" ArgumentType="x:Boolean" DataType="Boolean" Description="이 메시지를 사용자 또는 봇으로 전송합니다. 기본값은 true(사용자로 전송)입니다." DisplayName="As User" FieldName="As User" FormDataType="ExpressionTextBox" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="False" />
+                                        <ucm:CodeGenEntityField x:TypeArguments="usm1:Message" ArgumentValue="{x:Null}" ContainingType="{x:Null}" DefaultValue="{x:Null}" FieldFullName="{x:Null}" InArgumentValue="{x:Null}" InOutArgumentValue="{x:Null}" Metadata="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" Value="{x:Null}" ArgumentDirection="Out" ArgumentType="usm1:Message" DataType="Message" Description="전송된 메시지" DisplayName="Message" FieldName="Message" FormDataType="ExpressionTextBox" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="False" />
+                                      </scg:List>
+                                    </usam:SendMessage.SelectedFields>
+                                    <usam:SendMessage.ServiceFactory>
+                                      <uss:SlackServiceFactory />
+                                    </usam:SendMessage.ServiceFactory>
+                                    <usam:SendMessage.TelemetryProperties>
+                                      <scg:Dictionary x:TypeArguments="ubt:TelemetryGroup, scg:IDictionary(x:String, x:String)" />
+                                    </usam:SendMessage.TelemetryProperties>
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                  </usam:SendMessage>
+                                </Sequence>
+                              </ActivityAction>
+                            </usa:SlackScopeActivity.Body>
+                            <usa:SlackScopeActivity.ConnectionParameters>
+                              <scg:List x:TypeArguments="ucmc:ConnectionParam" Capacity="4">
+                                <ucmc:ConnectionParam Value="{x:Null}" ArgumentDirection="In" ArgumentType="x:String" Description="OAuth 액세스 토큰" Mandatory="True" Name="API Token">
+                                  <ucmc:ConnectionParam.ArgumentValue>
+                                    <InArgument x:TypeArguments="x:String">[in_SlackbotToken]</InArgument>
+                                  </ucmc:ConnectionParam.ArgumentValue>
+                                </ucmc:ConnectionParam>
+                              </scg:List>
+                            </usa:SlackScopeActivity.ConnectionParameters>
+                            <usa:SlackScopeActivity.DesignConnectionParameters>
+                              <scg:List x:TypeArguments="ucmc:ConnectionParam" Capacity="4">
+                                <ucmc:ConnectionParam ArgumentValue="{x:Null}" ArgumentDirection="In" ArgumentType="x:String" Description="OAuth 액세스 토큰" Mandatory="True" Name="API Token" Value="in_SlackuserToken" />
+                              </scg:List>
+                            </usa:SlackScopeActivity.DesignConnectionParameters>
+                            <usa:SlackScopeActivity.DesignConnectionRequest>
+                              <usm:SlackConnectionParameters APIKey="{x:Null}" BaseUrl="{x:Null}" BearerToken="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" ConfigFileClient="{x:Null}" ConfigFilePath="{x:Null}" ExistingConnection="{x:Null}" JWTToken="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" PersonalAccessTokenName="{x:Null}" PersonalAccessTokenSecret="{x:Null}" SwaggerClient="{x:Null}" Username="{x:Null}" APIToken="in_SlackuserToken" AuthType="ApiToken">
+                                <usm:SlackConnectionParameters.Scopes>
+                                  <use:SlackScopes>PublicChannels, PrivateChannels, DirectMessage, GroupMessage, Files, Users, Chat, UserGroups, Calls, DND, Emoji, Identity, Pins, Reminders, Reactions, Stars</use:SlackScopes>
+                                </usm:SlackConnectionParameters.Scopes>
+                              </usm:SlackConnectionParameters>
+                            </usa:SlackScopeActivity.DesignConnectionRequest>
+                            <usa:SlackScopeActivity.ServiceFactory>
+                              <uss:SlackServiceFactory />
+                            </usa:SlackScopeActivity.ServiceFactory>
+                            <usa:SlackScopeActivity.SupportedAuthTypes>
+                              <scg:List x:TypeArguments="x:String" Capacity="4">
+                                <x:String>Existing Connection</x:String>
+                                <x:String>OAuth Authorization Code</x:String>
+                                <x:String>API Token</x:String>
+                              </scg:List>
+                            </usa:SlackScopeActivity.SupportedAuthTypes>
+                            <usa:SlackScopeActivity.TelemetryProperties>
+                              <scg:Dictionary x:TypeArguments="ubt:TelemetryGroup, scg:IDictionary(x:String, x:String)" />
+                            </usa:SlackScopeActivity.TelemetryProperties>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </usa:SlackScopeActivity>
+                        </ActivityAction>
+                      </Catch>
+                    </TryCatch.Catches>
+                  </TryCatch>
+                  <If sap2010:Annotation.AnnotationText="요편의점은 relayo dashboard 동기화 작업 필요 없음" Condition="[currentItem &lt;&gt; &quot;요편의점&quot;]" sap:VirtualizedContainerService.HintSize="483.2,426.4" sap2010:WorkflowViewState.IdRef="If_4">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <Sequence sap:VirtualizedContainerService.HintSize="375.2,206.4" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Catalogyo\Catalogyo_makeSameVendor.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Catalogyo\Catalogyo_makeSameVendor.xaml">
+                          <ui:InvokeWorkflowFile.Arguments>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_brand_nm">[currentItem]</InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_relayo_id">[filterDT.Rows(0)("relayo_id").ToString]</InArgument>
+                          </ui:InvokeWorkflowFile.Arguments>
+                        </ui:InvokeWorkflowFile>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_17">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                  <usa:SlackScopeActivity Connection="{x:Null}" ExistingConnection="{x:Null}" SwaggerClient="{x:Null}" sap2010:Annotation.AnnotationText="catalogyo 추가 완료 슬랙" DesignConnectionEnabled="True" DisplayName="Slack Scope" ExistingConnectionType="usm:SlackConnection" sap:VirtualizedContainerService.HintSize="483.2,472" sap2010:WorkflowViewState.IdRef="SlackScopeActivity_2" RefreshCacheEnabled="False" Scopes="PublicChannels, PrivateChannels, DirectMessage, GroupMessage, Files, Users, Chat, UserGroups, Calls, DND, Emoji, Identity, Pins, Reminders, Reactions, Stars" SelectedAuthType="API Token" SelectedDesignAuthType="API Token" TelemetryEnabled="False" ThrowExceptionOnError="False">
+                    <usa:SlackScopeActivity.Body>
+                      <ActivityAction x:TypeArguments="ubac:ScopeActivityContext">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="ubac:ScopeActivityContext" Name="ScopeActivityContext" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="425.6,329.6" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <usam:SendMessage BusinessEntityName="{x:Null}" ScopeActivityType="{x:Null}" Status="{x:Null}" ConfiguredBusinessEntity="SendMessage" CrudOperation="Function" DesignConnectionEnabled="True" DisplayName="Send Message" sap:VirtualizedContainerService.HintSize="384,236.8" sap2010:WorkflowViewState.IdRef="SendMessage_2">
+                            <usam:SendMessage.BusinessEntity>
+                              <ubme:BusinessEntity AuthFields="{x:Null}" Connection="{x:Null}" Id="{x:Null}" Name="SendMessage">
+                                <ubme:BusinessEntity.AllFields>
+                                  <scg:List x:TypeArguments="ubme:EntityField" Capacity="0" />
+                                </ubme:BusinessEntity.AllFields>
+                                <ubme:BusinessEntity.EntityMetadata>
+                                  <ubme:EntityMetadata Description="{x:Null}" Metadata="{x:Reference __ReferenceID3}" PrimaryFields="{x:Null}" EligibleOperations="-1" IsCustomEntity="False" Name="SendMessage" />
+                                </ubme:BusinessEntity.EntityMetadata>
+                                <ubme:BusinessEntity.Metadata>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object" x:Name="__ReferenceID3" />
+                                </ubme:BusinessEntity.Metadata>
+                                <ubme:BusinessEntity.SelectedFields>
+                                  <scg:List x:TypeArguments="ubme:EntityField" Capacity="0" />
+                                </ubme:BusinessEntity.SelectedFields>
+                                <ubme:BusinessEntity.TelemetryProperties>
+                                  <scg:Dictionary x:TypeArguments="ubt:TelemetryGroup, scg:IDictionary(x:String, x:String)" />
+                                </ubme:BusinessEntity.TelemetryProperties>
+                              </ubme:BusinessEntity>
+                            </usam:SendMessage.BusinessEntity>
+                            <usam:SendMessage.PopulatedAPIParameters>
+                              <scg:Dictionary x:TypeArguments="x:String, ubme:EntityField" />
+                            </usam:SendMessage.PopulatedAPIParameters>
+                            <usam:SendMessage.SelectedFields>
+                              <scg:List x:TypeArguments="ubme:EntityField" Capacity="8">
+                                <ucm:CodeGenEntityField x:TypeArguments="use:ConversationType" ArgumentValue="{x:Null}" ContainingType="{x:Null}" FieldFullName="{x:Null}" InArgumentValue="{x:Null}" InOutArgumentValue="{x:Null}" Metadata="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" ArgumentDirection="In" ArgumentType="use:ConversationType" DataType="ConversationType" Description="메시지를 가져올 대화 유형" DisplayName="Conversation Type" FieldName="Conversation Type" FormDataType="ComboBox" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="True">
+                                  <ucm:CodeGenEntityField.DefaultValue>
+                                    <use:ConversationType>Channel</use:ConversationType>
+                                  </ucm:CodeGenEntityField.DefaultValue>
+                                  <ucm:CodeGenEntityField.Value>
+                                    <use:ConversationType>Channel</use:ConversationType>
+                                  </ucm:CodeGenEntityField.Value>
+                                </ucm:CodeGenEntityField>
+                                <ucm:CodeGenEntityField x:TypeArguments="x:String" ArgumentValue="{x:Null}" ContainingType="{x:Null}" DefaultValue="{x:Null}" FieldFullName="{x:Null}" InArgumentValue="{x:Null}" InOutArgumentValue="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" Value="{x:Null}" ArgumentDirection="In" ArgumentType="x:String" DataType="String" Description="채널의 이름" DisplayName="Channel Name" FieldName="Channel Name" FormDataType="TextBoxWithButton" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="False">
+                                  <ucm:CodeGenEntityField.Metadata>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <ube:WindowType x:Key="WindowType">FindObject</ube:WindowType>
+                                      <ubmv:FindObjectInput ParentQuery="{x:Null}" ParentQueryLabel="{x:Null}" Query="{x:Null}" x:Key="WindowTypeInput" IsMultiSelectAllowed="False" ObjectType="Channel" ReturnColumn="Name" ShouldLoadOnStart="False" WindowName="Channel">
+                                        <ubmv:FindObjectInput.ColumnsToShow>
+                                          <scg:List x:TypeArguments="x:String" Capacity="4">
+                                            <x:String>Id</x:String>
+                                            <x:String>Name</x:String>
+                                          </scg:List>
+                                        </ubmv:FindObjectInput.ColumnsToShow>
+                                        <ubmv:FindObjectInput.Metadata>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:String x:Key="ChannelTypesKey">public_channel,private_channel</x:String>
+                                          </scg:Dictionary>
+                                        </ubmv:FindObjectInput.Metadata>
+                                        <ubmv:FindObjectInput.QueryFilterColumns>
+                                          <scg:List x:TypeArguments="x:String" Capacity="4">
+                                            <x:String>Id</x:String>
+                                            <x:String>Name</x:String>
+                                          </scg:List>
+                                        </ubmv:FindObjectInput.QueryFilterColumns>
+                                      </ubmv:FindObjectInput>
+                                    </scg:Dictionary>
+                                  </ucm:CodeGenEntityField.Metadata>
+                                </ucm:CodeGenEntityField>
+                                <ucm:CodeGenEntityField x:TypeArguments="x:String" ContainingType="{x:Null}" DefaultValue="{x:Null}" FieldFullName="{x:Null}" InOutArgumentValue="{x:Null}" Metadata="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" Value="{x:Null}" ArgumentDirection="In" ArgumentType="x:String" DataType="String" Description="채널의 ID" DisplayName="Channel ID" FieldName="Channel ID" FormDataType="ExpressionTextBox" InArgumentValue="[in_slackChannel]" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="False">
+                                  <ucm:CodeGenEntityField.ArgumentValue>
+                                    <InArgument x:TypeArguments="x:String">[in_slackChannel]</InArgument>
+                                  </ucm:CodeGenEntityField.ArgumentValue>
+                                </ucm:CodeGenEntityField>
+                                <ucm:CodeGenEntityField x:TypeArguments="x:String" ContainingType="{x:Null}" DefaultValue="{x:Null}" FieldFullName="{x:Null}" InOutArgumentValue="{x:Null}" Metadata="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" Value="{x:Null}" ArgumentDirection="In" ArgumentType="x:String" DataType="String" Description="전송할 메시지" DisplayName="Text" FieldName="Text" FormDataType="ExpressionTextBox" InArgumentValue="[&quot;&gt; &quot; + currentItem.ToString + &quot; catalogyo 체인벤더 추가 / 동기화 완료&quot;]" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="False">
+                                  <ucm:CodeGenEntityField.ArgumentValue>
+                                    <InArgument x:TypeArguments="x:String">["&gt; " + currentItem.ToString + " catalogyo 체인벤더 추가 / 동기화 완료"]</InArgument>
+                                  </ucm:CodeGenEntityField.ArgumentValue>
+                                </ucm:CodeGenEntityField>
+                                <ucm:CodeGenEntityField x:TypeArguments="x:String" ArgumentValue="{x:Null}" ContainingType="{x:Null}" DefaultValue="{x:Null}" FieldFullName="{x:Null}" InArgumentValue="{x:Null}" InOutArgumentValue="{x:Null}" Metadata="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" Value="{x:Null}" ArgumentDirection="In" ArgumentType="x:String" DataType="String" Description="메시지에 첨부할 파일" DisplayName="File" FieldName="File" FormDataType="FilePicker" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="False" />
+                                <ucm:CodeGenEntityField x:TypeArguments="x:Boolean" ArgumentValue="{x:Null}" ContainingType="{x:Null}" DefaultValue="{x:Null}" FieldFullName="{x:Null}" InArgumentValue="{x:Null}" InOutArgumentValue="{x:Null}" Metadata="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" Value="{x:Null}" ArgumentDirection="In" ArgumentType="x:Boolean" DataType="Boolean" Description="이 메시지를 사용자 또는 봇으로 전송합니다. 기본값은 true(사용자로 전송)입니다." DisplayName="As User" FieldName="As User" FormDataType="ExpressionTextBox" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="False" />
+                                <ucm:CodeGenEntityField x:TypeArguments="usm1:Message" ArgumentValue="{x:Null}" ContainingType="{x:Null}" DefaultValue="{x:Null}" FieldFullName="{x:Null}" InArgumentValue="{x:Null}" InOutArgumentValue="{x:Null}" Metadata="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" Value="{x:Null}" ArgumentDirection="Out" ArgumentType="usm1:Message" DataType="Message" Description="전송된 메시지" DisplayName="Message" FieldName="Message" FormDataType="ExpressionTextBox" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="False" />
+                              </scg:List>
+                            </usam:SendMessage.SelectedFields>
+                            <usam:SendMessage.ServiceFactory>
+                              <uss:SlackServiceFactory />
+                            </usam:SendMessage.ServiceFactory>
+                            <usam:SendMessage.TelemetryProperties>
+                              <scg:Dictionary x:TypeArguments="ubt:TelemetryGroup, scg:IDictionary(x:String, x:String)" />
+                            </usam:SendMessage.TelemetryProperties>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </usam:SendMessage>
+                        </Sequence>
+                      </ActivityAction>
+                    </usa:SlackScopeActivity.Body>
+                    <usa:SlackScopeActivity.ConnectionParameters>
+                      <scg:List x:TypeArguments="ucmc:ConnectionParam" Capacity="4">
+                        <ucmc:ConnectionParam Value="{x:Null}" ArgumentDirection="In" ArgumentType="x:String" Description="OAuth 액세스 토큰" Mandatory="True" Name="API Token">
+                          <ucmc:ConnectionParam.ArgumentValue>
+                            <InArgument x:TypeArguments="x:String">[in_SlackbotToken]</InArgument>
+                          </ucmc:ConnectionParam.ArgumentValue>
+                        </ucmc:ConnectionParam>
+                      </scg:List>
+                    </usa:SlackScopeActivity.ConnectionParameters>
+                    <usa:SlackScopeActivity.DesignConnectionParameters>
+                      <scg:List x:TypeArguments="ucmc:ConnectionParam" Capacity="4">
+                        <ucmc:ConnectionParam ArgumentValue="{x:Null}" ArgumentDirection="In" ArgumentType="x:String" Description="OAuth 액세스 토큰" Mandatory="True" Name="API Token" Value="in_SlackuserToken" />
+                      </scg:List>
+                    </usa:SlackScopeActivity.DesignConnectionParameters>
+                    <usa:SlackScopeActivity.DesignConnectionRequest>
+                      <usm:SlackConnectionParameters APIKey="{x:Null}" BaseUrl="{x:Null}" BearerToken="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" ConfigFileClient="{x:Null}" ConfigFilePath="{x:Null}" ExistingConnection="{x:Null}" JWTToken="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" PersonalAccessTokenName="{x:Null}" PersonalAccessTokenSecret="{x:Null}" SwaggerClient="{x:Null}" Username="{x:Null}" APIToken="in_SlackuserToken" AuthType="ApiToken">
+                        <usm:SlackConnectionParameters.Scopes>
+                          <use:SlackScopes>PublicChannels, PrivateChannels, DirectMessage, GroupMessage, Files, Users, Chat, UserGroups, Calls, DND, Emoji, Identity, Pins, Reminders, Reactions, Stars</use:SlackScopes>
+                        </usm:SlackConnectionParameters.Scopes>
+                      </usm:SlackConnectionParameters>
+                    </usa:SlackScopeActivity.DesignConnectionRequest>
+                    <usa:SlackScopeActivity.ServiceFactory>
+                      <uss:SlackServiceFactory />
+                    </usa:SlackScopeActivity.ServiceFactory>
+                    <usa:SlackScopeActivity.SupportedAuthTypes>
+                      <scg:List x:TypeArguments="x:String" Capacity="4">
+                        <x:String>Existing Connection</x:String>
+                        <x:String>OAuth Authorization Code</x:String>
+                        <x:String>API Token</x:String>
+                      </scg:List>
+                    </usa:SlackScopeActivity.SupportedAuthTypes>
+                    <usa:SlackScopeActivity.TelemetryProperties>
+                      <scg:Dictionary x:TypeArguments="ubt:TelemetryGroup, scg:IDictionary(x:String, x:String)" />
+                    </usa:SlackScopeActivity.TelemetryProperties>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </usa:SlackScopeActivity>
+                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Bigquery\Bigquery_writeResultDT.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="483.2,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="Bigquery\Bigquery_writeResultDT.xaml">
+                    <ui:InvokeWorkflowFile.Arguments>
+                      <InArgument x:TypeArguments="sd:DataTable" x:Key="in_resultDT">[filterDT]</InArgument>
+                    </ui:InvokeWorkflowFile.Arguments>
+                  </ui:InvokeWorkflowFile>
+                </Sequence>
+              </ActivityAction>
+            </ui:ForEach.Body>
+          </ui:ForEach>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_7">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </If.Else>
+    </If>
+  </Sequence>
+</Activity>

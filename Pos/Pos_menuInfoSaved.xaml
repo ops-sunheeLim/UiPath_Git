@@ -1,0 +1,613 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Pos_menuInfoSaved" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ubac="clr-namespace:UiPath.BAF.Activities.ContextModel;assembly=UiPath.Slack.Activities" xmlns:ube="clr-namespace:UiPath.BAF.Enums;assembly=UiPath.Slack" xmlns:ubme="clr-namespace:UiPath.BAF.Models.Entity;assembly=UiPath.Slack" xmlns:ubmv="clr-namespace:UiPath.BAF.Models.Views;assembly=UiPath.Slack" xmlns:ubt="clr-namespace:UiPath.BAF.Telemetry;assembly=UiPath.Slack" xmlns:ucm="clr-namespace:UiPath.CodeGen.Model;assembly=UiPath.Slack" xmlns:ucmc="clr-namespace:UiPath.CodeGen.Models.Connection;assembly=UiPath.Slack" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:usa="clr-namespace:UiPath.Slack.Activities;assembly=UiPath.Slack.Activities" xmlns:usam="clr-namespace:UiPath.Slack.Activities.Messages;assembly=UiPath.Slack.Activities" xmlns:use="clr-namespace:UiPath.Slack.Enums;assembly=UiPath.Slack" xmlns:usm="clr-namespace:UiPath.Slack.Models;assembly=UiPath.Slack" xmlns:usm1="clr-namespace:UiPath.Slack.Model;assembly=UiPath.Slack" xmlns:uss="clr-namespace:UiPath.Slack.Services;assembly=UiPath.Slack" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_filterDT" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_slackChannel" Type="InArgument(x:String)" />
+    <x:Property Name="in_slackUserToken" Type="InArgument(x:String)" />
+    <x:Property Name="in_slackBotToken" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>2032,4376</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Pos_menuInfoSaved_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="62">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.BAF.Enums</x:String>
+      <x:String>UiPath.BAF.ServiceInterfaces</x:String>
+      <x:String>UiPath.BAF.Models.Entity</x:String>
+      <x:String>UiPath.BAF.Models.CrudOperation</x:String>
+      <x:String>UiPath.BAF.Telemetry</x:String>
+      <x:String>UiPath.BAF.Models.Response</x:String>
+      <x:String>UiPath.Slack.Activities.Messages</x:String>
+      <x:String>UiPath.Slack.Activities</x:String>
+      <x:String>UiPath.CodeGen.Activities</x:String>
+      <x:String>UiPath.BAF.Activities</x:String>
+      <x:String>UiPath.Slack.Enums</x:String>
+      <x:String>UiPath.Swagger.Models</x:String>
+      <x:String>UiPath.CodeGen.Models.Connection</x:String>
+      <x:String>UiPath.Slack.Models</x:String>
+      <x:String>UiPath.BAF.Models.Connection</x:String>
+      <x:String>UiPath.BAF.Models.Connection.APIConnection</x:String>
+      <x:String>UiPath.BAF.Activities.ContextModel</x:String>
+      <x:String>UiPath.BAF.Models</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="60">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices.RuntimeInformation</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Data.Entity</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Slack</AssemblyReference>
+      <AssemblyReference>UiPath.Slack.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Pos_menuInfoSaved" sap:VirtualizedContainerService.HintSize="1221,4311" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="scg:List(x:String)" Name="workList" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="1179,230" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="무시된 액티비티" sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_11">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+            <Assign.To>
+              <OutArgument x:TypeArguments="scg:List(x:String)">[workList]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="scg:List(x:String)">[New List(of String) From {"요기요에 메뉴 반영", "메뉴 및 Relayo 전환", "원산지정보 반영"}]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
+    <Assign sap2010:Annotation.AnnotationText="요기요에 메뉴반영 버튼 삭제" sap:VirtualizedContainerService.HintSize="1179,91" sap2010:WorkflowViewState.IdRef="Assign_4">
+      <Assign.To>
+        <OutArgument x:TypeArguments="scg:List(x:String)">[workList]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="scg:List(x:String)">[New List(of String) From {"메뉴 및 Relayo 전환", "원산지정보 반영"}]</InArgument>
+      </Assign.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </Assign>
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="1179,3818" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[workList]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="x:String">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:String" Name="currentItem" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="1143,3694" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Name="item_nm" />
+              <Variable x:TypeArguments="x:Boolean" Name="checkExist" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[in_filterDT]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="1101,2569" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+              <ui:ForEachRow.Body>
+                <ActivityAction x:TypeArguments="sd:DataRow">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="1067,2454" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:String" Name="vendor_id" />
+                      <Variable x:TypeArguments="x:Boolean" Name="checkBox_exist" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Assign sap:VirtualizedContainerService.HintSize="1025,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[vendor_id]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[CurrentRow("vendor_id").ToString]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="1025,374" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_2" MaxIterations="5">
+                      <ui:InterruptibleDoWhile.Body>
+                        <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="376,209" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:UiElementExists sap2010:Annotation.AnnotationText="가게 id check box 있는지 확인" DisplayName="Element Exists" Exists="[checkBox_exist]" sap:VirtualizedContainerService.HintSize="334,117" sap2010:WorkflowViewState.IdRef="UiElementExists_2">
+                            <ui:UiElementExists.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="22b260f7-2ef9-48ae-9231-682a33b86465" Selector="[string.Format(&quot;&lt;html app='chrome.exe' title='POS Management' /&gt;&lt;webctrl tag='INPUT' type='checkbox' value='{0}' /&gt;&quot;, vendor_id)]" TimeoutMS="5000">
+                                <ui:Target.WaitForReady>
+                                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                                </ui:Target.WaitForReady>
+                              </ui:Target>
+                            </ui:UiElementExists.Target>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:UiElementExists>
+                        </Sequence>
+                      </ui:InterruptibleDoWhile.Body>
+                      <ui:InterruptibleDoWhile.Condition>
+                        <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="checkBox_exist= False" />
+                      </ui:InterruptibleDoWhile.Condition>
+                    </ui:InterruptibleDoWhile>
+                    <If sap2010:Annotation.AnnotationText="체크박스 있으면 체크&#xD;&#xA;없으면 확인버튼 있는지 확인하고 클릭 후 다음 진행, 확인버튼 없으면 슬랙 알럿" Condition="[checkBox_exist]" sap:VirtualizedContainerService.HintSize="1025,1848" sap2010:WorkflowViewState.IdRef="If_2">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If.Then>
+                        <Sequence sap:VirtualizedContainerService.HintSize="376,209" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" sap2010:Annotation.AnnotationText="가게 id check box 체크" ClickType="CLICK_SINGLE" sap:VirtualizedContainerService.HintSize="334,117" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
+                            <ui:Click.CursorPosition>
+                              <ui:CursorPosition Position="Center">
+                                <ui:CursorPosition.OffsetX>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:CursorPosition.OffsetX>
+                                <ui:CursorPosition.OffsetY>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:CursorPosition.OffsetY>
+                              </ui:CursorPosition>
+                            </ui:Click.CursorPosition>
+                            <ui:Click.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a00860ca-bff1-485f-a67a-8b057c9c42f4" Selector="[string.Format(&quot;&lt;html app='chrome.exe' title='POS Management' /&gt;&lt;webctrl tag='INPUT' type='checkbox' value='{0}' /&gt;&quot;, vendor_id)]">
+                                <ui:Target.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:Target.TimeoutMS>
+                                <ui:Target.WaitForReady>
+                                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                                </ui:Target.WaitForReady>
+                              </ui:Target>
+                            </ui:Click.Target>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:Click>
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence sap:VirtualizedContainerService.HintSize="604,1648" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="562,767" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_3" MaxIterations="2">
+                            <ui:InterruptibleDoWhile.Body>
+                              <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="526,602" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:UiElementExists DisplayName="Element Exists" Exists="[checkExist]" sap:VirtualizedContainerService.HintSize="484,86" sap2010:WorkflowViewState.IdRef="UiElementExists_3">
+                                  <ui:UiElementExists.Target>
+                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="fbcc59ca-1d03-429e-9e8a-a56cba542071" Selector="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='POS Management - Chrome' /&gt;&lt;ctrl name='relayo-dashboard.yogiyo.co.kr 내용:' role='dialog' /&gt;&lt;ctrl name='확인' role='push button' /&gt;" TimeoutMS="10000">
+                                      <ui:Target.WaitForReady>
+                                        <InArgument x:TypeArguments="ui:WaitForReady" />
+                                      </ui:Target.WaitForReady>
+                                    </ui:Target>
+                                  </ui:UiElementExists.Target>
+                                </ui:UiElementExists>
+                                <If Condition="[checkExist]" sap:VirtualizedContainerService.HintSize="484,384" sap2010:WorkflowViewState.IdRef="If_3">
+                                  <If.Then>
+                                    <Sequence sap:VirtualizedContainerService.HintSize="376,198" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                                      <Sequence.Variables>
+                                        <Variable x:TypeArguments="x:String" Name="alert_text" />
+                                      </Sequence.Variables>
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'push button  확인'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="True" UnblockInput="True">
+                                        <ui:Click.CursorPosition>
+                                          <ui:CursorPosition Position="Center">
+                                            <ui:CursorPosition.OffsetX>
+                                              <InArgument x:TypeArguments="x:Int32" />
+                                            </ui:CursorPosition.OffsetX>
+                                            <ui:CursorPosition.OffsetY>
+                                              <InArgument x:TypeArguments="x:Int32" />
+                                            </ui:CursorPosition.OffsetY>
+                                          </ui:CursorPosition>
+                                        </ui:Click.CursorPosition>
+                                        <ui:Click.Target>
+                                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="296a326b-5350-4ca7-a20d-8a20ac6cca8b" InformativeScreenshot="e45a8235122e57c970a99ebce03782a2" Selector="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='POS Management - Chrome' /&gt;&lt;ctrl name='relayo-dashboard.yogiyo.co.kr 내용:' role='dialog' /&gt;&lt;ctrl name='확인' role='push button' /&gt;">
+                                            <ui:Target.TimeoutMS>
+                                              <InArgument x:TypeArguments="x:Int32" />
+                                            </ui:Target.TimeoutMS>
+                                            <ui:Target.WaitForReady>
+                                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                                            </ui:Target.WaitForReady>
+                                          </ui:Target>
+                                        </ui:Click.Target>
+                                      </ui:Click>
+                                    </Sequence>
+                                  </If.Then>
+                                  <If.Else>
+                                    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_14">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </Sequence>
+                                  </If.Else>
+                                </If>
+                              </Sequence>
+                            </ui:InterruptibleDoWhile.Body>
+                            <ui:InterruptibleDoWhile.Condition>
+                              <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="checkExist=False" />
+                            </ui:InterruptibleDoWhile.Condition>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:InterruptibleDoWhile>
+                          <If Condition="[checkExist=False]" sap:VirtualizedContainerService.HintSize="562,749" sap2010:WorkflowViewState.IdRef="If_4">
+                            <If.Then>
+                              <Sequence sap:VirtualizedContainerService.HintSize="502,562" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <usa:SlackScopeActivity Connection="{x:Null}" ExistingConnection="{x:Null}" SwaggerClient="{x:Null}" sap2010:Annotation.AnnotationText="가게 id 못찾는 경우 알럿" DesignConnectionEnabled="True" DisplayName="Slack Scope" ExistingConnectionType="usm:SlackConnection" sap:VirtualizedContainerService.HintSize="460,470" sap2010:WorkflowViewState.IdRef="SlackScopeActivity_2" RefreshCacheEnabled="False" Scopes="PublicChannels, PrivateChannels, DirectMessage, GroupMessage, Files, Users, Chat, UserGroups, Calls, DND, Emoji, Identity, Pins, Reminders, Reactions, Stars" SelectedAuthType="API Token" SelectedDesignAuthType="API Token" TelemetryEnabled="False" ThrowExceptionOnError="False">
+                                  <usa:SlackScopeActivity.Body>
+                                    <ActivityAction x:TypeArguments="ubac:ScopeActivityContext">
+                                      <ActivityAction.Argument>
+                                        <DelegateInArgument x:TypeArguments="ubac:ScopeActivityContext" Name="ScopeActivityContext" />
+                                      </ActivityAction.Argument>
+                                      <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="426,328" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <usam:SendMessage BusinessEntityName="{x:Null}" ScopeActivityType="{x:Null}" Status="{x:Null}" ConfiguredBusinessEntity="SendMessage" CrudOperation="Function" DesignConnectionEnabled="True" DisplayName="Send Message" sap:VirtualizedContainerService.HintSize="384,236" sap2010:WorkflowViewState.IdRef="SendMessage_2">
+                                          <usam:SendMessage.BusinessEntity>
+                                            <ubme:BusinessEntity AuthFields="{x:Null}" Connection="{x:Null}" Id="{x:Null}" Name="SendMessage">
+                                              <ubme:BusinessEntity.AllFields>
+                                                <scg:List x:TypeArguments="ubme:EntityField" Capacity="0" />
+                                              </ubme:BusinessEntity.AllFields>
+                                              <ubme:BusinessEntity.EntityMetadata>
+                                                <ubme:EntityMetadata Description="{x:Null}" Metadata="{x:Reference __ReferenceID0}" PrimaryFields="{x:Null}" EligibleOperations="-1" IsCustomEntity="False" Name="SendMessage" />
+                                              </ubme:BusinessEntity.EntityMetadata>
+                                              <ubme:BusinessEntity.Metadata>
+                                                <scg:Dictionary x:TypeArguments="x:String, x:Object" x:Name="__ReferenceID0" />
+                                              </ubme:BusinessEntity.Metadata>
+                                              <ubme:BusinessEntity.SelectedFields>
+                                                <scg:List x:TypeArguments="ubme:EntityField" Capacity="0" />
+                                              </ubme:BusinessEntity.SelectedFields>
+                                              <ubme:BusinessEntity.TelemetryProperties>
+                                                <scg:Dictionary x:TypeArguments="ubt:TelemetryGroup, scg:IDictionary(x:String, x:String)" />
+                                              </ubme:BusinessEntity.TelemetryProperties>
+                                            </ubme:BusinessEntity>
+                                          </usam:SendMessage.BusinessEntity>
+                                          <usam:SendMessage.PopulatedAPIParameters>
+                                            <scg:Dictionary x:TypeArguments="x:String, ubme:EntityField" />
+                                          </usam:SendMessage.PopulatedAPIParameters>
+                                          <usam:SendMessage.SelectedFields>
+                                            <scg:List x:TypeArguments="ubme:EntityField" Capacity="8">
+                                              <ucm:CodeGenEntityField x:TypeArguments="use:ConversationType" ArgumentValue="{x:Null}" ContainingType="{x:Null}" FieldFullName="{x:Null}" InArgumentValue="{x:Null}" InOutArgumentValue="{x:Null}" Metadata="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" ArgumentDirection="In" ArgumentType="use:ConversationType" DataType="ConversationType" Description="메시지를 가져올 대화 유형" DisplayName="Conversation Type" FieldName="Conversation Type" FormDataType="ComboBox" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="True">
+                                                <ucm:CodeGenEntityField.DefaultValue>
+                                                  <use:ConversationType>Channel</use:ConversationType>
+                                                </ucm:CodeGenEntityField.DefaultValue>
+                                                <ucm:CodeGenEntityField.Value>
+                                                  <use:ConversationType>Channel</use:ConversationType>
+                                                </ucm:CodeGenEntityField.Value>
+                                              </ucm:CodeGenEntityField>
+                                              <ucm:CodeGenEntityField x:TypeArguments="x:String" ArgumentValue="{x:Null}" ContainingType="{x:Null}" DefaultValue="{x:Null}" FieldFullName="{x:Null}" InArgumentValue="{x:Null}" InOutArgumentValue="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" Value="{x:Null}" ArgumentDirection="In" ArgumentType="x:String" DataType="String" Description="채널의 이름" DisplayName="Channel Name" FieldName="Channel Name" FormDataType="TextBoxWithButton" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="False">
+                                                <ucm:CodeGenEntityField.Metadata>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <ube:WindowType x:Key="WindowType">FindObject</ube:WindowType>
+                                                    <ubmv:FindObjectInput ParentQuery="{x:Null}" ParentQueryLabel="{x:Null}" Query="{x:Null}" x:Key="WindowTypeInput" IsMultiSelectAllowed="False" ObjectType="Channel" ReturnColumn="Name" ShouldLoadOnStart="False" WindowName="Channel">
+                                                      <ubmv:FindObjectInput.ColumnsToShow>
+                                                        <scg:List x:TypeArguments="x:String" Capacity="4">
+                                                          <x:String>Id</x:String>
+                                                          <x:String>Name</x:String>
+                                                        </scg:List>
+                                                      </ubmv:FindObjectInput.ColumnsToShow>
+                                                      <ubmv:FindObjectInput.Metadata>
+                                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                          <x:String x:Key="ChannelTypesKey">public_channel,private_channel</x:String>
+                                                        </scg:Dictionary>
+                                                      </ubmv:FindObjectInput.Metadata>
+                                                      <ubmv:FindObjectInput.QueryFilterColumns>
+                                                        <scg:List x:TypeArguments="x:String" Capacity="4">
+                                                          <x:String>Id</x:String>
+                                                          <x:String>Name</x:String>
+                                                        </scg:List>
+                                                      </ubmv:FindObjectInput.QueryFilterColumns>
+                                                    </ubmv:FindObjectInput>
+                                                  </scg:Dictionary>
+                                                </ucm:CodeGenEntityField.Metadata>
+                                              </ucm:CodeGenEntityField>
+                                              <ucm:CodeGenEntityField x:TypeArguments="x:String" ContainingType="{x:Null}" DefaultValue="{x:Null}" FieldFullName="{x:Null}" InOutArgumentValue="{x:Null}" Metadata="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" Value="{x:Null}" ArgumentDirection="In" ArgumentType="x:String" DataType="String" Description="채널의 ID" DisplayName="Channel ID" FieldName="Channel ID" FormDataType="ExpressionTextBox" InArgumentValue="[in_slackChannel]" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="False">
+                                                <ucm:CodeGenEntityField.ArgumentValue>
+                                                  <InArgument x:TypeArguments="x:String">[in_slackChannel]</InArgument>
+                                                </ucm:CodeGenEntityField.ArgumentValue>
+                                              </ucm:CodeGenEntityField>
+                                              <ucm:CodeGenEntityField x:TypeArguments="x:String" ContainingType="{x:Null}" DefaultValue="{x:Null}" FieldFullName="{x:Null}" InOutArgumentValue="{x:Null}" Metadata="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" Value="{x:Null}" ArgumentDirection="In" ArgumentType="x:String" DataType="String" Description="전송할 메시지" DisplayName="Text" FieldName="Text" FormDataType="ExpressionTextBox" InArgumentValue="[&quot;&gt; &quot;+currentItem.ToString+&quot; 수행 중 가게 id 못찾음 (&quot;+ CurrentRow(&quot;brand_nm&quot;).ToString + &quot; &quot; + CurrentRow(&quot;vendor_id&quot;).ToString +  &quot; &quot; + CurrentRow(&quot;vendor_nm&quot;).ToString + &quot;)&quot;]" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="False">
+                                                <ucm:CodeGenEntityField.ArgumentValue>
+                                                  <InArgument x:TypeArguments="x:String" xml:space="preserve">["&gt; "+currentItem.ToString+" 수행 중 가게 id 못찾음 ("+ CurrentRow("brand_nm").ToString + " " + CurrentRow("vendor_id").ToString +  " " + CurrentRow("vendor_nm").ToString + ")"]</InArgument>
+                                                </ucm:CodeGenEntityField.ArgumentValue>
+                                              </ucm:CodeGenEntityField>
+                                              <ucm:CodeGenEntityField x:TypeArguments="x:String" ArgumentValue="{x:Null}" ContainingType="{x:Null}" DefaultValue="{x:Null}" FieldFullName="{x:Null}" InArgumentValue="{x:Null}" InOutArgumentValue="{x:Null}" Metadata="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" Value="{x:Null}" ArgumentDirection="In" ArgumentType="x:String" DataType="String" Description="메시지에 첨부할 파일" DisplayName="File" FieldName="File" FormDataType="FilePicker" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="False" />
+                                              <ucm:CodeGenEntityField x:TypeArguments="x:Boolean" ArgumentValue="{x:Null}" ContainingType="{x:Null}" DefaultValue="{x:Null}" FieldFullName="{x:Null}" InArgumentValue="{x:Null}" InOutArgumentValue="{x:Null}" Metadata="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" Value="{x:Null}" ArgumentDirection="In" ArgumentType="x:Boolean" DataType="Boolean" Description="이 메시지를 사용자 또는 봇으로 전송합니다. 기본값은 true(사용자로 전송)입니다." DisplayName="As User" FieldName="As User" FormDataType="ExpressionTextBox" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="False" />
+                                              <ucm:CodeGenEntityField x:TypeArguments="usm1:Message" ArgumentValue="{x:Null}" ContainingType="{x:Null}" DefaultValue="{x:Null}" FieldFullName="{x:Null}" InArgumentValue="{x:Null}" InOutArgumentValue="{x:Null}" Metadata="{x:Null}" OriginalArgumentType="{x:Null}" OutArgumentValue="{x:Null}" SampleValue="{x:Null}" Value="{x:Null}" ArgumentDirection="Out" ArgumentType="usm1:Message" DataType="Message" Description="전송된 메시지" DisplayName="Message" FieldName="Message" FormDataType="ExpressionTextBox" IsCustomField="False" IsDefault="False" IsDeletable="True" IsIdField="False" IsSelected="False" Mandatory="False" ShouldFilterOnChange="False" />
+                                            </scg:List>
+                                          </usam:SendMessage.SelectedFields>
+                                          <usam:SendMessage.ServiceFactory>
+                                            <uss:SlackServiceFactory />
+                                          </usam:SendMessage.ServiceFactory>
+                                          <usam:SendMessage.TelemetryProperties>
+                                            <scg:Dictionary x:TypeArguments="ubt:TelemetryGroup, scg:IDictionary(x:String, x:String)" />
+                                          </usam:SendMessage.TelemetryProperties>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </usam:SendMessage>
+                                      </Sequence>
+                                    </ActivityAction>
+                                  </usa:SlackScopeActivity.Body>
+                                  <usa:SlackScopeActivity.ConnectionParameters>
+                                    <scg:List x:TypeArguments="ucmc:ConnectionParam" Capacity="4">
+                                      <ucmc:ConnectionParam Value="{x:Null}" ArgumentDirection="In" ArgumentType="x:String" Description="OAuth 액세스 토큰" Mandatory="True" Name="API Token">
+                                        <ucmc:ConnectionParam.ArgumentValue>
+                                          <InArgument x:TypeArguments="x:String">[in_SlackbotToken]</InArgument>
+                                        </ucmc:ConnectionParam.ArgumentValue>
+                                      </ucmc:ConnectionParam>
+                                    </scg:List>
+                                  </usa:SlackScopeActivity.ConnectionParameters>
+                                  <usa:SlackScopeActivity.DesignConnectionParameters>
+                                    <scg:List x:TypeArguments="ucmc:ConnectionParam" Capacity="4">
+                                      <ucmc:ConnectionParam ArgumentValue="{x:Null}" ArgumentDirection="In" ArgumentType="x:String" Description="OAuth 액세스 토큰" Mandatory="True" Name="API Token" Value="in_SlackuserToken" />
+                                    </scg:List>
+                                  </usa:SlackScopeActivity.DesignConnectionParameters>
+                                  <usa:SlackScopeActivity.DesignConnectionRequest>
+                                    <usm:SlackConnectionParameters APIKey="{x:Null}" BaseUrl="{x:Null}" BearerToken="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" ConfigFileClient="{x:Null}" ConfigFilePath="{x:Null}" ExistingConnection="{x:Null}" JWTToken="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" PersonalAccessTokenName="{x:Null}" PersonalAccessTokenSecret="{x:Null}" SwaggerClient="{x:Null}" Username="{x:Null}" APIToken="in_Config(&quot;Slack_userToken&quot;).ToString" AuthType="ApiToken">
+                                      <usm:SlackConnectionParameters.Scopes>
+                                        <use:SlackScopes>PublicChannels, PrivateChannels, DirectMessage, GroupMessage, Files, Users, Chat, UserGroups, Calls, DND, Emoji, Identity, Pins, Reminders, Reactions, Stars</use:SlackScopes>
+                                      </usm:SlackConnectionParameters.Scopes>
+                                    </usm:SlackConnectionParameters>
+                                  </usa:SlackScopeActivity.DesignConnectionRequest>
+                                  <usa:SlackScopeActivity.ServiceFactory>
+                                    <uss:SlackServiceFactory />
+                                  </usa:SlackScopeActivity.ServiceFactory>
+                                  <usa:SlackScopeActivity.SupportedAuthTypes>
+                                    <scg:List x:TypeArguments="x:String" Capacity="4">
+                                      <x:String>Existing Connection</x:String>
+                                      <x:String>OAuth Authorization Code</x:String>
+                                      <x:String>API Token</x:String>
+                                    </scg:List>
+                                  </usa:SlackScopeActivity.SupportedAuthTypes>
+                                  <usa:SlackScopeActivity.TelemetryProperties>
+                                    <scg:Dictionary x:TypeArguments="ubt:TelemetryGroup, scg:IDictionary(x:String, x:String)" />
+                                  </usa:SlackScopeActivity.TelemetryProperties>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </usa:SlackScopeActivity>
+                              </Sequence>
+                            </If.Then>
+                            <If.Else>
+                              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_17">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </Sequence>
+                            </If.Else>
+                          </If>
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                  </Sequence>
+                </ActivityAction>
+              </ui:ForEachRow.Body>
+            </ui:ForEachRow>
+            <Assign sap:VirtualizedContainerService.HintSize="1101,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[item_nm]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[currentItem.ToString]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" ClickType="CLICK_SINGLE" DelayMS="5000" sap:VirtualizedContainerService.HintSize="1101,86" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True" UnblockInput="True">
+              <ui:Click.CursorPosition>
+                <ui:CursorPosition Position="Center">
+                  <ui:CursorPosition.OffsetX>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetX>
+                  <ui:CursorPosition.OffsetY>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetY>
+                </ui:CursorPosition>
+              </ui:Click.CursorPosition>
+              <ui:Click.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a00860ca-bff1-485f-a67a-8b057c9c42f4" Selector="[string.Format(&quot;&lt;html app='chrome.exe' title='POS Management' /&gt;&lt;webctrl tag='INPUT' type='button' value='{0}' /&gt;&quot;, item_nm)]">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:Click.Target>
+            </ui:Click>
+            <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" Condition="[checkExist]" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="1101,767" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
+              <ui:InterruptibleDoWhile.Body>
+                <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="526,602" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:UiElementExists DisplayName="Element Exists" Exists="[checkExist]" sap:VirtualizedContainerService.HintSize="484,86" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
+                    <ui:UiElementExists.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="fbcc59ca-1d03-429e-9e8a-a56cba542071" Selector="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='POS Management - Chrome' /&gt;&lt;ctrl name='relayo-dashboard.yogiyo.co.kr 내용:' role='dialog' /&gt;&lt;ctrl name='확인' role='push button' /&gt;" TimeoutMS="60000">
+                        <ui:Target.WaitForReady>
+                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                        </ui:Target.WaitForReady>
+                      </ui:Target>
+                    </ui:UiElementExists.Target>
+                  </ui:UiElementExists>
+                  <If Condition="[checkExist]" sap:VirtualizedContainerService.HintSize="484,384" sap2010:WorkflowViewState.IdRef="If_1">
+                    <If.Then>
+                      <Sequence sap:VirtualizedContainerService.HintSize="376,198" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="x:String" Name="alert_text" />
+                        </Sequence.Variables>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'push button  확인'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="True" UnblockInput="True">
+                          <ui:Click.CursorPosition>
+                            <ui:CursorPosition Position="Center">
+                              <ui:CursorPosition.OffsetX>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetX>
+                              <ui:CursorPosition.OffsetY>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetY>
+                            </ui:CursorPosition>
+                          </ui:Click.CursorPosition>
+                          <ui:Click.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="296a326b-5350-4ca7-a20d-8a20ac6cca8b" InformativeScreenshot="e45a8235122e57c970a99ebce03782a2" Selector="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='POS Management - Chrome' /&gt;&lt;ctrl name='relayo-dashboard.yogiyo.co.kr 내용:' role='dialog' /&gt;&lt;ctrl name='확인' role='push button' /&gt;">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ui:Click.Target>
+                        </ui:Click>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_5">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                </Sequence>
+              </ui:InterruptibleDoWhile.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:InterruptibleDoWhile>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEach.Body>
+    </ui:ForEach>
+  </Sequence>
+</Activity>
